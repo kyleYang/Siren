@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270E1AE32348DD030065CC24 /* SSExtensionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E1AE22348DD030065CC24 /* SSExtensionInfo.swift */; };
+		270E1AE72348ECB00065CC24 /* SSPopupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E1AE62348ECB00065CC24 /* SSPopupProtocol.swift */; };
+		270E1AE92348F13F0065CC24 /* SSExtensionVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E1AE82348F13F0065CC24 /* SSExtensionVersion.swift */; };
+		270E1AEB234B0E370065CC24 /* ExampleExtensionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E1AEA234B0E370065CC24 /* ExampleExtensionInfo.swift */; };
 		8E1635A91E6A0B9C0060CE27 /* SirenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6C74C1E6A0AE100DBE454 /* SirenTests.swift */; };
 		8EACA9711F380294003134CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EACA9671F37F2D3003134CA /* LaunchScreen.xib */; };
 		8EACA9721F380294003134CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EACA9691F37F2D3003134CA /* Main.storyboard */; };
@@ -69,6 +73,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		270E1AE22348DD030065CC24 /* SSExtensionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSExtensionInfo.swift; sourceTree = "<group>"; };
+		270E1AE62348ECB00065CC24 /* SSPopupProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSPopupProtocol.swift; sourceTree = "<group>"; };
+		270E1AE82348F13F0065CC24 /* SSExtensionVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSExtensionVersion.swift; sourceTree = "<group>"; };
+		270E1AEA234B0E370065CC24 /* ExampleExtensionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleExtensionInfo.swift; sourceTree = "<group>"; };
 		55EC364A1E6BB98A00726F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Siren/Info.plist; sourceTree = "<group>"; };
 		8E3A6C041D07CB6F00A8B7CF /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EACA9661F37F2D3003134CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +139,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270E1AE12348DCB50065CC24 /* SandStone */ = {
+			isa = PBXGroup;
+			children = (
+				270E1AE22348DD030065CC24 /* SSExtensionInfo.swift */,
+				270E1AE62348ECB00065CC24 /* SSPopupProtocol.swift */,
+				270E1AE82348F13F0065CC24 /* SSExtensionVersion.swift */,
+			);
+			name = SandStone;
+			path = ../../Sources/SandStone;
+			sourceTree = "<group>";
+		};
 		8E641D2420C8B44B00908555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +162,7 @@
 			children = (
 				8EACA9661F37F2D3003134CA /* AppDelegate.swift */,
 				8EACA96E1F37F2DD003134CA /* Supporting Files */,
+				270E1AEA234B0E370065CC24 /* ExampleExtensionInfo.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -193,6 +213,7 @@
 		8EF9F854224EACA500B20545 /* Siren */ = {
 			isa = PBXGroup;
 			children = (
+				270E1AE12348DCB50065CC24 /* SandStone */,
 				8EF9F86D224EACB100B20545 /* Siren.swift */,
 				8EF9F876224EACB200B20545 /* Siren.bundle */,
 				8EF9F86E224EACB100B20545 /* Extensions */,
@@ -453,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EACA9741F38029B003134CA /* AppDelegate.swift in Sources */,
+				270E1AEB234B0E370065CC24 /* ExampleExtensionInfo.swift in Sources */,
 				8EACA9751F38029B003134CA /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,17 +487,20 @@
 				8EF9F87F224EACB200B20545 /* Model.swift in Sources */,
 				8EF9F885224EACB200B20545 /* UIAlertControllerExtension.swift in Sources */,
 				8EF9F88C224EACB200B20545 /* SirenViewController.swift in Sources */,
+				270E1AE72348ECB00065CC24 /* SSPopupProtocol.swift in Sources */,
 				8EF9F886224EACB200B20545 /* BundleExtension.swift in Sources */,
 				8EF9F87D224EACB200B20545 /* AlertConstants.swift in Sources */,
 				8EF9F881224EACB200B20545 /* Rules.swift in Sources */,
 				8EF9F889224EACB200B20545 /* DataParser.swift in Sources */,
 				8EF9F879224EACB200B20545 /* APIManager.swift in Sources */,
+				270E1AE92348F13F0065CC24 /* SSExtensionVersion.swift in Sources */,
 				8EF9F87E224EACB200B20545 /* Localization.swift in Sources */,
 				8EF9F880224EACB200B20545 /* APIModel.swift in Sources */,
 				8EF9F888224EACB200B20545 /* DateExtension.swift in Sources */,
 				8EF9F884224EACB200B20545 /* Siren.swift in Sources */,
 				8EF9F887224EACB200B20545 /* UserDefaultsExtension.swift in Sources */,
 				8EF9F87B224EACB200B20545 /* PresentationManager.swift in Sources */,
+				270E1AE32348DD030065CC24 /* SSExtensionInfo.swift in Sources */,
 				8EF9F883224EACB200B20545 /* UpdateResults.swift in Sources */,
 				8EF9F87C224EACB200B20545 /* AlertAction.swift in Sources */,
 				8EF9F88A224EACB200B20545 /* KnownError.swift in Sources */,
@@ -668,7 +693,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Siren/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.AppStoreConnect;
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mijwed.app;
 				PRODUCT_NAME = Example;
 				SWIFT_VERSION = 5.0;
 			};
@@ -684,7 +710,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Siren/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.AppStoreConnect;
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mijwed.app;
 				PRODUCT_NAME = Example;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;

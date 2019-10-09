@@ -37,6 +37,11 @@ public final class Siren: NSObject {
     /// skipping the update all together until another version is released.
     public lazy var rulesManager: RulesManager = .default
 
+    public var extensionInfo: SSExtensionInfo? {
+        didSet {
+            extensionInfo?.prepareInfo()
+        }
+    }
     /// The current installed version of your app.
     lazy var currentInstalledVersion: String? = Bundle.version()
 
@@ -97,8 +102,8 @@ public extension Siren {
     func launchAppStore() {
         guard let appID = appID,
             let url = URL(string: "https://itunes.apple.com/app/id\(appID)") else {
-                resultsHandler?(.failure(.malformedURL))
-                return
+            resultsHandler?(.failure(.malformedURL))
+            return
         }
 
         DispatchQueue.main.async {
@@ -163,8 +168,8 @@ private extension Siren {
         // Check the release date of the current version.
         guard let currentVersionReleaseDate = apiModel.results.first?.currentVersionReleaseDate,
             let daysSinceRelease = Date.days(since: currentVersionReleaseDate) else {
-                resultsHandler?(.failure(.currentVersionReleaseDate))
-                return
+            resultsHandler?(.failure(.currentVersionReleaseDate))
+            return
         }
 
         // Check if applicaiton has been released for the amount of days defined by the app consuming Siren.
@@ -179,7 +184,7 @@ private extension Siren {
                           minimumOSVersion: results.minimumOSVersion,
                           releaseNotes: results.releaseNotes,
                           version: results.version)
-
+        
         determineIfAlertPresentationRulesAreSatisfied(forCurrentAppStoreVersion: currentAppStoreVersion, andModel: model)
     }
 
@@ -199,7 +204,13 @@ private extension Siren {
             currentAppStoreVersion == previouslySkippedVersion {
             resultsHandler?(.failure(.skipVersionUpdate(installedVersion: currentInstalledVersion,
                                                         appStoreVersion: currentAppStoreVersion)))
-                return
+            return
+        }
+        
+        // need extension info from own's server
+        if let info = self.extensionInfo,info.needVersionInfo {
+            info.storeModel = model
+            return
         }
 
         let updateType = DataParser.parseForUpdate(forInstalledVersion: currentInstalledVersion,
@@ -242,9 +253,9 @@ private extension Siren {
         presentationManager.presentAlert(withRules: rules, forCurrentAppStoreVersion: currentAppStoreVersion) { [weak self] alertAction in
             guard let self = self else { return }
             let results = UpdateResults(alertAction: alertAction,
-                                  localization: self.presentationManager.localization,
-                                  model: model,
-                                  updateType: updateType)
+                                        localization: self.presentationManager.localization,
+                                        model: model,
+                                        updateType: updateType)
             self.resultsHandler?(.success(results))
         }
     }
@@ -261,9 +272,9 @@ private extension Siren {
             .addObserver(forName: UIApplication.didBecomeActiveNotification,
                          object: nil,
                          queue: nil) { [weak self] _ in
-                            guard let self = self else { return }
-                            self.performVersionCheck()
-        }
+                guard let self = self else { return }
+                self.performVersionCheck()
+            }
     }
 
     /// Adds an observer that listens for when the user enters the app switcher
@@ -275,9 +286,9 @@ private extension Siren {
                 .addObserver(forName: UIApplication.willResignActiveNotification,
                              object: nil,
                              queue: nil) { [weak self] _ in
-                                guard let self = self else { return }
-                                self.presentationManager.cleanUp()
-            }
+                    guard let self = self else { return }
+                    self.presentationManager.cleanUp()
+                }
         }
 
         if applicationDidEnterBackgroundObserver == nil {
@@ -286,9 +297,9 @@ private extension Siren {
                 .addObserver(forName: UIApplication.didEnterBackgroundNotification,
                              object: nil,
                              queue: nil) { [weak self] _ in
-                                guard let self = self else { return }
-                                self.presentationManager.cleanUp()
-            }
+                    guard let self = self else { return }
+                    self.presentationManager.cleanUp()
+                }
         }
     }
 }
@@ -310,4 +321,9 @@ private extension Siren {
         NotificationCenter.default.removeObserver(applicationDidEnterBackgroundObserver as Any)
         applicationDidEnterBackgroundObserver = nil
     }
+}
+
+
+extension Siren :SSExtensionInfoDelegate {
+    
 }

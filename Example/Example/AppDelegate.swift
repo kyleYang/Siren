@@ -138,14 +138,16 @@ private extension AppDelegate {
     func annoyingRuleExample() {
         let siren = Siren.shared
         siren.rulesManager = RulesManager(globalRules: .annoying)
+        siren.apiManager = APIManager(countryCode: "cn")
+        siren.extensionInfo = ExampleExtensionInfo()
 
         siren.wail { results in
             switch results {
-            case .success(let updateResults):
-                print("AlertAction ", updateResults.alertAction)
-                print("Localization ", updateResults.localization)
-                print("Model ", updateResults.model)
-                print("UpdateType ", updateResults.updateType)
+                case .success(let _): break
+//                print("AlertAction ", updateResults.alertAction)
+//                print("Localization ", updateResults.localization)
+//                print("Model ", updateResults.model)
+//                print("UpdateType ", updateResults.updateType)
             case .failure(let error):
                 print(error.localizedDescription)
             }
